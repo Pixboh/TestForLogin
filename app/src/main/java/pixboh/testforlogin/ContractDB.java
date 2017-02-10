@@ -26,7 +26,7 @@ public class ContractDB {
         public static String COLUMN_USERNAME="username";
         public static String COLUMN_EMAIL="emails";
         public static String COLUMN_PASSWORD="password";
-        public static  String CREATE_TABLE="CREATE TABLE  IF NOT EXISTS " +
+        public static  String CREATE_TABLE="CREATE TABLE  " +
                 NOM_TABLE+" (" +
                 DBtable._ID+" INTEGER PRIMARY KEY AUTOINCREMENT,  " +
                 COLUMN_PRENOM+" TEXT NOT NULL, " +

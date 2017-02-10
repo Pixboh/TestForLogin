@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Locale;
 
 /**
  * Created by PIXBOH on 09/02/2017.
@@ -29,10 +30,10 @@ public class AdapterPersonnalise extends RecyclerView.Adapter<AdapterPersonnalis
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {
         Personne p=personnes.get(position);
-        holder.textViewNom.setText(p.getPrenom()+" "+p.getNom());
-        holder.textViewUsername.setText(p.getUsername());
-        holder.textViewNumero.setText(p.getNumero_tel());
-        holder.textViewEmail.setText(p.getEmail());
+        holder.textViewNom.setText((p.getPrenom()+" "+p.getNom()).toUpperCase(Locale.FRENCH));
+        holder.textViewUsername.setText("Username: "+p.getUsername());
+        holder.textViewNumero.setText("Tel: "+p.getNumero_tel());
+        holder.textViewEmail.setText("Email: "+p.getEmail());
 
     }
 

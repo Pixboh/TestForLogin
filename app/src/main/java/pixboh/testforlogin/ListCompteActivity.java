@@ -6,6 +6,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.util.Log;
 
 import java.util.ArrayList;
 
@@ -27,7 +28,8 @@ RecyclerView recyclerView;
         recyclerView=(RecyclerView)findViewById(R.id.recyclerView);
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
          p =new ArrayList<>();
-     // remplirList(globaledata.bdd);
+        Log.e("LIst",p.toString());
+               remplirList(bdd);
         AdapterPersonnalise adapterPersonnalise=new AdapterPersonnalise(p);
         recyclerView.setAdapter(adapterPersonnalise);
 
@@ -41,7 +43,7 @@ RecyclerView recyclerView;
 
                 Personne personne=new Personne();
                personne.setNom(cursor.getString(cursor.getColumnIndex(ContractDB.DBtable.COLUMN_NOM)));
-                personne.setEmail(cursor.getColumnName(cursor.getColumnIndex(ContractDB.DBtable.COLUMN_EMAIL)));
+                personne.setEmail(cursor.getString(cursor.getColumnIndex(ContractDB.DBtable.COLUMN_EMAIL)));
              personne.setUsername(cursor.getString(cursor.getColumnIndex(ContractDB.DBtable.COLUMN_USERNAME)));
                 personne.setMot_de_passe(cursor.getString(cursor.getColumnIndex(ContractDB.DBtable.COLUMN_PASSWORD)));
                personne.setPrenom(cursor.getString(cursor.getColumnIndex(ContractDB.DBtable.COLUMN_PRENOM)));

@@ -10,7 +10,9 @@ public class Personne  {
     private String numero_tel;
     private String mot_de_passe;
     private String email;
-    public String username;
+    private String username;
+    private String imageid;
+
 
     public Personne(String prenom, String email, String mot_de_passe, String numero_tel, String nom,String username) {
         this.prenom = prenom;
@@ -19,6 +21,7 @@ public class Personne  {
         this.numero_tel = numero_tel;
         this.nom = nom;
         this.username=username;
+
     }
 
     public Personne() {
@@ -36,6 +39,14 @@ public class Personne  {
         this.prenom = prenom;
         this.nom = nom;
         this.numero_tel = numero_tel;
+    }
+
+    public String getImageid() {
+        return imageid;
+    }
+
+    public void setImageid(String imageid) {
+        this.imageid = imageid;
     }
 
     public String getPrenom() {

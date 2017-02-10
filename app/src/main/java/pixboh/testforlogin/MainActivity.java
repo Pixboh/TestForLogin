@@ -28,8 +28,7 @@ public class MainActivity extends AppCompatActivity {
         helper = new SQLhelperSubClass(this);
         bdd = helper.getWritableDatabase();
         findMyViews();
-        editTextUsername.setText("gfdgdfg");
-        editTextPassword.setText("hkbgfhfhjb");
+
         buttonInscrire.setOnClickListener(
                 new View.OnClickListener() {
                     @Override

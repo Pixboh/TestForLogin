@@ -27,7 +27,7 @@ public class SQLhelperSubClass extends SQLiteOpenHelper {
 
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS "+ ContractDB.DBtable.NOM_TABLE);
+        db.execSQL("DROP TABLE  "+ ContractDB.DBtable.NOM_TABLE);
         onCreate(db);
 
     }
