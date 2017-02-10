@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">TestForLogin</string>
+    <string name="login">Sign in</string>
+    <string name="connectezvous">Signin In</string>
+    <string name="creercompte">Sign Up</string>
+    <string name="nocompte">No Account Yet?</string>
+    <string name="username">Username</string>
+    <string name="password">Password</string>
+</resources>

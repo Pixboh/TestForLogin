@@ -1,0 +1,9 @@
+<resources>
+    <string name="app_name">TestForLogin</string>
+    <string name="login">Se Connecter</string>
+    <string name="connectezvous">Connectez Vous</string>
+    <string name="creercompte">Creer un Compte</string>
+    <string name="nocompte">Pas de Compte?</string>
+    <string name="username">Nom d\'utilisateur</string>
+    <string name="password">Mot de passe</string>
+</resources>
