@@ -53,6 +53,7 @@ public class AdapterPersonnalise extends RecyclerView.Adapter<AdapterPersonnalis
             textViewNom=(TextView)itemView.findViewById(R.id.textViewnomclient);
             textViewNumero=(TextView)itemView.findViewById(R.id.textViewNumero);
             textViewUsername=(TextView)itemView.findViewById(R.id.textViewUsername);
+            imageViewClient=(ImageView)itemView.findViewById(R.id.imageclient);
 
 
 

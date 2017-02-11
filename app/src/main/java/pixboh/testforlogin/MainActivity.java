@@ -19,6 +19,7 @@ public class MainActivity extends AppCompatActivity {
     private Button buttonConection;
     private Button buttonInscrire;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
@@ -42,6 +43,8 @@ public class MainActivity extends AppCompatActivity {
 
                 if (testlog(bdd)) {
                     startActivity(new Intent(MainActivity.this, ListCompteActivity.class));
+                   editTextUsername.setText("");
+                    editTextPassword.setText("");
                 }
 
             }
