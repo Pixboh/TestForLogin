@@ -1,4 +1,4 @@
-package pixboh.testforlogin;
+package pixboh.testforlogin.Activity;
 
 import android.app.Activity;
 import android.database.Cursor;
@@ -9,6 +9,12 @@ import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 
 import java.util.ArrayList;
+
+import pixboh.testforlogin.Adapter.AdapterPersonnalise;
+import pixboh.testforlogin.Helper.ContractDB;
+import pixboh.testforlogin.Entity.Personne;
+import pixboh.testforlogin.R;
+import pixboh.testforlogin.Helper.SQLhelperSubClass;
 
 /**
  * Created by PIXBOH on 09/02/2017.
@@ -37,7 +43,7 @@ RecyclerView recyclerView;
     }
     public void remplirList(SQLiteDatabase bd){
 
-        Cursor cursor=bd.rawQuery("SELECT * FROM "+ContractDB.DBtable.NOM_TABLE,null);
+        Cursor cursor=bd.rawQuery("SELECT * FROM "+ ContractDB.DBtable.NOM_TABLE,null);
         try{   if(cursor.moveToFirst()){
             while (!cursor.isAfterLast()){
 

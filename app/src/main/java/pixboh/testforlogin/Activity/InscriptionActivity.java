@@ -1,4 +1,4 @@
-package pixboh.testforlogin;
+package pixboh.testforlogin.Activity;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -13,6 +13,11 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import pixboh.testforlogin.Helper.ContractDB;
+import pixboh.testforlogin.Entity.Personne;
+import pixboh.testforlogin.R;
+import pixboh.testforlogin.Helper.SQLhelperSubClass;
 
 /**
  * Created by PIXBOH on 09/02/2017.
@@ -64,7 +69,7 @@ public class InscriptionActivity extends Activity {
 
      }
 
-    public  Personne nouveauInscrit(){
+    public Personne nouveauInscrit(){
         String[] mDonnees={
                 editTextPrenom.getText().toString(),
                 editTextNom.getText().toString(),

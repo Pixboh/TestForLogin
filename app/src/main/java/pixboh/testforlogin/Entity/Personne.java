@@ -1,4 +1,4 @@
-package pixboh.testforlogin;
+package pixboh.testforlogin.Entity;
 
 /**
  * Created by PIXBOH on 09/02/2017.

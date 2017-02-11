@@ -1,4 +1,4 @@
-package pixboh.testforlogin;
+package pixboh.testforlogin.Activity;
 
 import android.content.Intent;
 import android.database.Cursor;
@@ -10,6 +10,10 @@ import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import pixboh.testforlogin.Helper.ContractDB;
+import pixboh.testforlogin.R;
+import pixboh.testforlogin.Helper.SQLhelperSubClass;
 
 public class MainActivity extends AppCompatActivity {
     SQLhelperSubClass helper;

@@ -1,7 +1,9 @@
-package pixboh.testforlogin;
+package pixboh.testforlogin.Helper;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;
+
+import pixboh.testforlogin.Entity.Personne;
 
 /**
  * Created by PIXBOH on 09/02/2017.
@@ -18,7 +20,7 @@ public class ContractDB {
 
     }
 
-    static class  DBtable implements BaseColumns {
+    public static class  DBtable implements BaseColumns {
         public static String NOM_TABLE="personnes";
         public static String COLUMN_NOM="noms";
         public static String COLUMN_PRENOM="prenoms";

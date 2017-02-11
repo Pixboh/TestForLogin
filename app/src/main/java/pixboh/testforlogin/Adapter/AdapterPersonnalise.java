@@ -1,4 +1,4 @@
-package pixboh.testforlogin;
+package pixboh.testforlogin.Adapter;
 
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -9,6 +9,9 @@ import android.widget.TextView;
 
 import java.util.ArrayList;
 import java.util.Locale;
+
+import pixboh.testforlogin.Entity.Personne;
+import pixboh.testforlogin.R;
 
 /**
  * Created by PIXBOH on 09/02/2017.
