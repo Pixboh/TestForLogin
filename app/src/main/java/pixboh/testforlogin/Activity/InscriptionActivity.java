@@ -14,10 +14,14 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import pixboh.testforlogin.Helper.ContractDB;
+import pixboh.testforlogin.HelperSqllite.ContractDB;
 import pixboh.testforlogin.Entity.Personne;
 import pixboh.testforlogin.R;
-import pixboh.testforlogin.Helper.SQLhelperSubClass;
+import pixboh.testforlogin.HelperSqllite.SQLhelperSubClass;
+import pixboh.testforlogin.WebService.RetrofitBuilder;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 /**
  * Created by PIXBOH on 09/02/2017.
@@ -115,8 +119,21 @@ public class InscriptionActivity extends Activity {
         public void onClick(View v) {
             if(nouveauInscrit()!=null){
             ContractDB.ajouterPersonne(bdd,nouveauInscrit());
-                Toast.makeText(InscriptionActivity.this,"Inscription Reussi!!",Toast.LENGTH_SHORT).show();
-                finish();
+            RetrofitBuilder.createService().addNewPersonne(nouveauInscrit()).enqueue(new Callback<Boolean>() {
+                @Override
+                public void onResponse(Call<Boolean> call, Response<Boolean> response) {
+                    Toast.makeText(InscriptionActivity.this,"Inscription Reussi!!",Toast.LENGTH_SHORT).show();
+                    finish();
+                }
+
+                @Override
+                public void onFailure(Call<Boolean> call, Throwable t) {
+                    t.printStackTrace();
+
+                }
+            });
+
+
             }
 
         }

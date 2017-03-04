@@ -1,4 +1,4 @@
-package pixboh.testforlogin.Helper;
+package pixboh.testforlogin.HelperSqllite;
 
 import android.database.sqlite.SQLiteDatabase;
 import android.provider.BaseColumns;

@@ -11,10 +11,11 @@ import android.util.Log;
 import java.util.ArrayList;
 
 import pixboh.testforlogin.Adapter.AdapterPersonnalise;
-import pixboh.testforlogin.Helper.ContractDB;
 import pixboh.testforlogin.Entity.Personne;
+import pixboh.testforlogin.HelperSqllite.ContractDB;
+import pixboh.testforlogin.HelperSqllite.SQLhelperSubClass;
 import pixboh.testforlogin.R;
-import pixboh.testforlogin.Helper.SQLhelperSubClass;
+import pixboh.testforlogin.WebService.RetrofitBuilder;
 
 /**
  * Created by PIXBOH on 09/02/2017.

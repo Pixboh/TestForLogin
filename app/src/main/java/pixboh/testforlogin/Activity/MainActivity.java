@@ -11,9 +11,9 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import pixboh.testforlogin.Helper.ContractDB;
+import pixboh.testforlogin.HelperSqllite.ContractDB;
 import pixboh.testforlogin.R;
-import pixboh.testforlogin.Helper.SQLhelperSubClass;
+import pixboh.testforlogin.HelperSqllite.SQLhelperSubClass;
 
 public class MainActivity extends AppCompatActivity {
     SQLhelperSubClass helper;
