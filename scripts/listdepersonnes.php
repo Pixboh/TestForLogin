@@ -6,7 +6,7 @@ while($resultat = $requete->fetchAll(PDO::FETCH_ASSOC)){
    $json=$resultat;
 
 }
-echo json_encode($json,true);
+echo json_encode($json);
 
 
 
