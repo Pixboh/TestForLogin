@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="pixboh.testforlogin">
-
+<uses-permission android:name="android.permission.INTERNET"></uses-permission>
     <application
 android:name=".Application.AppContext"
         android:allowBackup="true"

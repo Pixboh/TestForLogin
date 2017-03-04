@@ -5,15 +5,23 @@ import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.List;
+
+import pixboh.testforlogin.Entity.Personne;
 import pixboh.testforlogin.HelperSqllite.ContractDB;
-import pixboh.testforlogin.R;
 import pixboh.testforlogin.HelperSqllite.SQLhelperSubClass;
+import pixboh.testforlogin.R;
+import pixboh.testforlogin.WebService.RetrofitBuilder;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     SQLhelperSubClass helper;
@@ -30,6 +38,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+        debugging();
         helper = new SQLhelperSubClass(this);
         bdd = helper.getWritableDatabase();
         findMyViews();
@@ -94,5 +103,28 @@ public class MainActivity extends AppCompatActivity {
         editTextUsername.startAnimation(AnimationUtils.loadAnimation(this, R.anim.errorentry));
         Toast.makeText(this, "Username Incorrect?", Toast.LENGTH_SHORT).show();
         return false;
+    }
+
+
+
+
+    void debugging(){
+
+            RetrofitBuilder.createService().getListPersonne().enqueue(new Callback<List<Personne>>() {
+                @Override
+                public void onResponse(Call<List<Personne>> call, Response<List<Personne>> response) {
+                    Log.e("nom : ",response.body().get(0).getNom());
+                }
+
+                @Override
+                public void onFailure(Call<List<Personne>> call, Throwable t) {
+                    t.printStackTrace();
+
+                }
+            });
+
+
+
+
     }
 }

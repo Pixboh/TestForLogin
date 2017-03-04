@@ -1,11 +1,5 @@
 package pixboh.testforlogin.WebService;
 
-import java.io.File;
-import java.io.IOException;
-
-import okhttp3.Cache;
-import okhttp3.OkHttpClient;
-import pixboh.testforlogin.Application.AppContext;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 
@@ -14,18 +8,18 @@ import retrofit2.converter.gson.GsonConverterFactory;
  */
 
 public class RetrofitBuilder {
-    static AppContext appContext;
-    private static final String BASE_URL_API = "https://github.com/Pixboh/TestForLogin/scripts/";
+    ;
+    private static final String BASE_URL_API = "https://github.com/Pixboh/TestForLogin/tree/master/scripts/";
 
-    private static Retrofit.Builder builder = new Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
-            .client(getClient());
+    private static Retrofit.Builder builder = new Retrofit.Builder().baseUrl(BASE_URL_API)
+            .addConverterFactory(GsonConverterFactory.create());
     private static Retrofit retrofit = builder.build();
 
     public static RequestInterface createService() {
         return retrofit.create(RequestInterface.class);
     }
 
-    public static OkHttpClient getClient() {
+   /* public static OkHttpClient getClient() {
         File file = new File(appContext.getCacheDir(), "fileforclient");
         OkHttpClient.Builder httpClient = null;
         if (!file.exists()) {
@@ -40,6 +34,6 @@ public class RetrofitBuilder {
                     .cache(cache);
         }
         return httpClient.build();
-    }
+    }*/
 
 }
