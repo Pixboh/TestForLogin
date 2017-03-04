@@ -27,6 +27,7 @@ public interface RequestInterface {
     @POST("addpersonnne.php")
     Call<Boolean> addNewPersonne(@Query("newuser") Personne personne);
 
+//    Creation de la table personne
 
 
 

@@ -15,7 +15,7 @@ import retrofit2.converter.gson.GsonConverterFactory;
 
 public class RetrofitBuilder {
     static AppContext appContext;
-    private static final String BASE_URL_API = "https://github.com/Pixboh/TestForLogin/script";
+    private static final String BASE_URL_API = "https://github.com/Pixboh/TestForLogin/scripts/";
 
     private static Retrofit.Builder builder = new Retrofit.Builder().addConverterFactory(GsonConverterFactory.create())
             .client(getClient());
