@@ -1,6 +1,6 @@
 <?php
 
-$server="www.db4free.net";
+$server="db4free.net";
 $user = "bdakingg";
 $password="pixking";
 $dbname="pixbdd";

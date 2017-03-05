@@ -7,6 +7,7 @@ import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
 import android.os.Bundle;
 import android.provider.MediaStore;
+import android.util.Log;
 import android.view.View;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
@@ -14,10 +15,10 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import pixboh.testforlogin.HelperSqllite.ContractDB;
 import pixboh.testforlogin.Entity.Personne;
-import pixboh.testforlogin.R;
+import pixboh.testforlogin.HelperSqllite.ContractDB;
 import pixboh.testforlogin.HelperSqllite.SQLhelperSubClass;
+import pixboh.testforlogin.R;
 import pixboh.testforlogin.WebService.RetrofitBuilder;
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -119,19 +120,21 @@ public class InscriptionActivity extends Activity {
         public void onClick(View v) {
             if(nouveauInscrit()!=null){
             ContractDB.ajouterPersonne(bdd,nouveauInscrit());
-            RetrofitBuilder.createService().addNewPersonne(nouveauInscrit()).enqueue(new Callback<Boolean>() {
-                @Override
-                public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-                    Toast.makeText(InscriptionActivity.this,"Inscription Reussi!!",Toast.LENGTH_SHORT).show();
-                    finish();
-                }
+                RetrofitBuilder.createService().addNewPersonne(nouveauInscrit()).enqueue(new Callback<Boolean>() {
 
-                @Override
-                public void onFailure(Call<Boolean> call, Throwable t) {
-                    t.printStackTrace();
+                    @Override
+                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
 
-                }
-            });
+                        if(response.code()==200){
+                            Log.e("coool","cool");
+                        }
+                    }
+
+                    @Override
+                    public void onFailure(Call<Boolean> call, Throwable t) {
+                       t.printStackTrace();
+                    }
+                });
 
 
             }
@@ -155,4 +158,5 @@ public class InscriptionActivity extends Activity {
 
         }
     }
+
 }

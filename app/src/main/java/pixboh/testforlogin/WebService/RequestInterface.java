@@ -4,6 +4,7 @@ import java.util.List;
 
 import pixboh.testforlogin.Entity.Personne;
 import retrofit2.Call;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
 import retrofit2.http.POST;
 import retrofit2.http.Query;
@@ -25,7 +26,7 @@ public interface RequestInterface {
 
 //    Requete pour ajouter une personne
     @POST("addpersonnne.php")
-    Call<Boolean> addNewPersonne(@Query("newuser") Personne personne);
+    Call<Boolean> addNewPersonne(@Body Personne personne);
 
 //    Creation de la table personne
 
