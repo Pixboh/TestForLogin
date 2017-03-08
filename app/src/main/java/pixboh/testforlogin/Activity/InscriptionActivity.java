@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.provider.MediaStore;
 import android.util.Log;
@@ -15,13 +16,13 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 import pixboh.testforlogin.Entity.Personne;
 import pixboh.testforlogin.HelperSqllite.ContractDB;
 import pixboh.testforlogin.HelperSqllite.SQLhelperSubClass;
 import pixboh.testforlogin.R;
 import pixboh.testforlogin.WebService.RetrofitBuilder;
-import retrofit2.Call;
-import retrofit2.Callback;
 import retrofit2.Response;
 
 /**
@@ -120,21 +121,7 @@ public class InscriptionActivity extends Activity {
         public void onClick(View v) {
             if(nouveauInscrit()!=null){
             ContractDB.ajouterPersonne(bdd,nouveauInscrit());
-                RetrofitBuilder.createService().addNewPersonne(nouveauInscrit()).enqueue(new Callback<Boolean>() {
-
-                    @Override
-                    public void onResponse(Call<Boolean> call, Response<Boolean> response) {
-
-                        if(response.code()==200){
-                            Log.e("coool","cool");
-                        }
-                    }
-
-                    @Override
-                    public void onFailure(Call<Boolean> call, Throwable t) {
-                       t.printStackTrace();
-                    }
-                });
+            new AddNewUserNewBackground().execute(nouveauInscrit());
 
 
             }
@@ -156,6 +143,28 @@ public class InscriptionActivity extends Activity {
 
 
 
+        }
+    }
+    class AddNewUserNewBackground extends AsyncTask<Personne,Void,Boolean>{
+
+        @Override
+        protected Boolean doInBackground(Personne... params) {
+            try {
+                Response<Boolean> booleanResponse= RetrofitBuilder.createService().addNewPersonne(params[0]).execute();
+                if(booleanResponse.code()==200){
+                    return booleanResponse.body();
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
+            return false;
+
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+            Log.e("Reponse : ", aBoolean.toString());
         }
     }
 

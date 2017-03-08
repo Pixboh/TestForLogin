@@ -3,26 +3,17 @@ package pixboh.testforlogin.Activity;
 import android.content.Intent;
 import android.database.Cursor;
 import android.database.sqlite.SQLiteDatabase;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
-import android.util.Log;
 import android.view.View;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
-import java.io.IOException;
-import java.util.List;
-
-import pixboh.testforlogin.Entity.Personne;
 import pixboh.testforlogin.HelperSqllite.ContractDB;
 import pixboh.testforlogin.HelperSqllite.SQLhelperSubClass;
 import pixboh.testforlogin.R;
-import pixboh.testforlogin.WebService.RetrofitBuilder;
-import retrofit2.Call;
-import retrofit2.Response;
 
 public class MainActivity extends AppCompatActivity {
     SQLhelperSubClass helper;
@@ -39,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        debugging();
+
         helper = new SQLhelperSubClass(this);
         bdd = helper.getWritableDatabase();
         findMyViews();
@@ -108,48 +99,4 @@ public class MainActivity extends AppCompatActivity {
 
 
 
-
-    void debugging(){
-
-new Asynch().execute(1);
-
-
-
-
-    }
-    class Asynch extends AsyncTask<Integer,Void,Personne>{
-
-        @Override
-        protected Personne doInBackground(Integer... params) {
-            List<Personne> personneListOutput=null;
-            int stop=20;
-            while (personneListOutput==null && stop>0) {
-                try {
-
-                    Call<List<Personne>> personneCall = RetrofitBuilder.createService().getListPersonne();
-                    Response<List<Personne>> listResponse = personneCall.execute();
-                    if (listResponse.code() == 200) {
-                        personneListOutput = listResponse.body();
-                    }
-
-
-                }
-                catch (java.net.SocketTimeoutException e) {
-                    e.printStackTrace();
-
-                } catch (IOException e) {
-                    e.printStackTrace();
-                }
-                stop--;
-            }
-            return personneListOutput.get(params[0]);
-
-        }
-
-        @Override
-        protected void onPostExecute(Personne personne) {
-            super.onPostExecute(personne);
-            Log.e("Nom : ", personne.getPrenom()+" "+personne.getNom());
-        }
-    }
 }
