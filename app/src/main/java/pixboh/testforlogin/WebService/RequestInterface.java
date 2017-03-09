@@ -27,8 +27,8 @@ public interface RequestInterface {
 //    Requete pour ajouter une personne
     @POST("addpersonnne.php")
     Call<Boolean> addNewPersonne(@Body Personne personne);
+// Requete pour verifier le compte use
 
-//    Creation de la table personne
 
 
 

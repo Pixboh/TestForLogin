@@ -1,10 +1,13 @@
 package pixboh.testforlogin.Entity;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
 /**
  * Created by PIXBOH on 09/02/2017.
  */
 
-public class Personne  {
+public class Personne implements Parcelable {
     private String prenom;
     private String nom;
     private String numero_tel;
@@ -13,8 +16,17 @@ public class Personne  {
     private String username;
     private String imageid;
 
+    public Personne(String prenom, String nom, String numero_tel, String mot_de_passe, String email, String username, String imageid) {
+        this.prenom = prenom;
+        this.nom = nom;
+        this.numero_tel = numero_tel;
+        this.mot_de_passe = mot_de_passe;
+        this.email = email;
+        this.username = username;
+        this.imageid = imageid;
+    }
 
-    public Personne(String prenom, String email, String mot_de_passe, String numero_tel, String nom,String username) {
+    public Personne(String prenom, String email, String mot_de_passe, String numero_tel, String nom, String username) {
         this.prenom = prenom;
         this.email = email;
         this.mot_de_passe = mot_de_passe;
@@ -26,6 +38,28 @@ public class Personne  {
 
     public Personne() {
     }
+
+    protected Personne(Parcel in) {
+        prenom = in.readString();
+        nom = in.readString();
+        numero_tel = in.readString();
+        mot_de_passe = in.readString();
+        email = in.readString();
+        username = in.readString();
+        imageid = in.readString();
+    }
+
+    public static final Creator<Personne> CREATOR = new Creator<Personne>() {
+        @Override
+        public Personne createFromParcel(Parcel in) {
+            return new Personne(in);
+        }
+
+        @Override
+        public Personne[] newArray(int size) {
+            return new Personne[size];
+        }
+    };
 
     public String getUsername() {
         return username;
@@ -89,4 +123,19 @@ public class Personne  {
         this.nom = nom;
     }
 
+    @Override
+    public int describeContents() {
+        return 0;
+    }
+
+    @Override
+    public void writeToParcel(Parcel dest, int flags) {
+        dest.writeString(prenom);
+        dest.writeString(nom);
+        dest.writeString(numero_tel);
+        dest.writeString(mot_de_passe);
+        dest.writeString(email);
+        dest.writeString(username);
+        dest.writeString(imageid);
+    }
 }

@@ -1,18 +1,14 @@
 <?php
+require 'connexionbd.php';
 
-$server="db4free.net";
-$user = "bdakingg";
-$password="pixking";
-$dbname="pixbdd";
-$bdd = new PDO('mysql:host='.$server.';dbname='.$dbname.';charset=UTF8',$user,$password);
-
-$requete = $bdd->query('SELECT * FROM PERSONNES ');
+$requete = $bdd->query('SELECT * FROM personneslogged ');
 $json=array();
-while($resultat = $requete->fetchAll(PDO::FETCH_ASSOC)){
-   $json=$resultat;
+while($resultat = $requete->fetch(PDO::FETCH_ASSOC)){
+   $json[]=$resultat;
 
 }
-echo json_encode($json);
+echo json_encode($json,JSON_OBJECT_AS_ARRAY);
+
 
 
 

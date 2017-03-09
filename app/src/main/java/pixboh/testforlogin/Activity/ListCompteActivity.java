@@ -38,6 +38,8 @@ RecyclerView recyclerView;
         recyclerView.setLayoutManager(new LinearLayoutManager(this,LinearLayoutManager.VERTICAL,false));
         pList =new ArrayList<>();
         new FillRecycleviewOnBackGround().execute();
+
+
 //        On charge notre liste depuis la base de donnee heberge et non avec Sqllite
        /*
 
@@ -48,28 +50,7 @@ RecyclerView recyclerView;
 
 
     }
-/*    public void remplirList(SQLiteDatabase bd){
 
-        Cursor cursor=bd.rawQuery("SELECT * FROM "+ ContractDB.DBtable.NOM_TABLE,null);
-        try{   if(cursor.moveToFirst()){
-            while (!cursor.isAfterLast()){
-
-                Personne personne=new Personne();
-               personne.setNom(cursor.getString(cursor.getColumnIndex(ContractDB.DBtable.COLUMN_NOM)));
-                personne.setEmail(cursor.getString(cursor.getColumnIndex(ContractDB.DBtable.COLUMN_EMAIL)));
-             personne.setUsername(cursor.getString(cursor.getColumnIndex(ContractDB.DBtable.COLUMN_USERNAME)));
-                personne.setMot_de_passe(cursor.getString(cursor.getColumnIndex(ContractDB.DBtable.COLUMN_PASSWORD)));
-               personne.setPrenom(cursor.getString(cursor.getColumnIndex(ContractDB.DBtable.COLUMN_PRENOM)));
-                personne.setNumero_tel(cursor.getString(cursor.getColumnIndex(ContractDB.DBtable.COLUMN_NUMERO)));
-                pList.add(personne);
-                cursor.moveToNext();
-
-            }
-        }
-        }finally {
-            cursor.close();
-        }
-    }*/
     class FillRecycleviewOnBackGround extends AsyncTask<Void,Void,List<Personne>>{
 
         @Override
@@ -95,6 +76,39 @@ RecyclerView recyclerView;
 
         }
     }
+
+
+
+
+
+
+
+
+
+
+
+    /*    public void remplirList(SQLiteDatabase bd){
+
+        Cursor cursor=bd.rawQuery("SELECT * FROM "+ ContractDB.DBtable.NOM_TABLE,null);
+        try{   if(cursor.moveToFirst()){
+            while (!cursor.isAfterLast()){
+
+                Personne personne=new Personne();
+               personne.setNom(cursor.getString(cursor.getColumnIndex(ContractDB.DBtable.COLUMN_NOM)));
+                personne.setEmail(cursor.getString(cursor.getColumnIndex(ContractDB.DBtable.COLUMN_EMAIL)));
+             personne.setUsername(cursor.getString(cursor.getColumnIndex(ContractDB.DBtable.COLUMN_USERNAME)));
+                personne.setMot_de_passe(cursor.getString(cursor.getColumnIndex(ContractDB.DBtable.COLUMN_PASSWORD)));
+               personne.setPrenom(cursor.getString(cursor.getColumnIndex(ContractDB.DBtable.COLUMN_PRENOM)));
+                personne.setNumero_tel(cursor.getString(cursor.getColumnIndex(ContractDB.DBtable.COLUMN_NUMERO)));
+                pList.add(personne);
+                cursor.moveToNext();
+
+            }
+        }
+        }finally {
+            cursor.close();
+        }
+    }*/
 
 
 

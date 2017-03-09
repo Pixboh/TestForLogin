@@ -23,6 +23,7 @@ import pixboh.testforlogin.HelperSqllite.ContractDB;
 import pixboh.testforlogin.HelperSqllite.SQLhelperSubClass;
 import pixboh.testforlogin.R;
 import pixboh.testforlogin.WebService.RetrofitBuilder;
+import retrofit2.Call;
 import retrofit2.Response;
 
 /**
@@ -30,12 +31,12 @@ import retrofit2.Response;
  */
 
 public class InscriptionActivity extends Activity {
+    public static int REQUEST_CODE_TO_GET_IMAGE=5;
     Animation anim;
     SQLhelperSubClass helper;
     SQLiteDatabase bdd;
     private EditText editTextNom,editTextPrenom,editTextUsername,editTextPassword,editTextConfPassword,editTextEmail,editTextNumero;
     private Button buttonValider,buttonRetourner,buttonImageclient;
-    public static int REQUEST_CODE_TO_GET_IMAGE=5;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,6 +45,7 @@ public class InscriptionActivity extends Activity {
         helper=new SQLhelperSubClass(this);
         bdd=helper.getWritableDatabase();
         findMyViews();
+
         anim= AnimationUtils.loadAnimation(InscriptionActivity.this,R.anim.errorentry);
         buttonValider.setOnClickListener(new valideinscription());
         buttonRetourner.setOnClickListener(new View.OnClickListener() {
@@ -115,20 +117,6 @@ public class InscriptionActivity extends Activity {
         return new Personne(mDonnees[0],mDonnees[3], passwordTest,mDonnees[4],mDonnees[5],mDonnees[2]);
     }
 
-    class valideinscription implements View.OnClickListener{
-
-        @Override
-        public void onClick(View v) {
-            if(nouveauInscrit()!=null){
-            ContractDB.ajouterPersonne(bdd,nouveauInscrit());
-            new AddNewUserNewBackground().execute(nouveauInscrit());
-
-
-            }
-
-        }
-    }
-
     @Override
     protected void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
@@ -137,7 +125,6 @@ public class InscriptionActivity extends Activity {
             String[] filepathcolumn={MediaStore.Images.Media.DATA};
             Cursor cursor=getContentResolver().query(selectedImage,filepathcolumn,null,null,null);
             int columnIndex=cursor.getColumnIndex(filepathcolumn[0]);
-            String picturePath=cursor.getString(columnIndex);
             cursor.close();
 
 
@@ -145,26 +132,45 @@ public class InscriptionActivity extends Activity {
 
         }
     }
+
+    class valideinscription implements View.OnClickListener{
+
+        @Override
+        public void onClick(View v) {
+            if(nouveauInscrit()!=null){
+            ContractDB.ajouterPersonne(bdd,nouveauInscrit());
+            new AddNewUserNewBackground().execute(nouveauInscrit());
+
+            }
+
+        }
+    }
+
     class AddNewUserNewBackground extends AsyncTask<Personne,Void,Boolean>{
+
 
         @Override
         protected Boolean doInBackground(Personne... params) {
+            Boolean output=null;
+            Call<Boolean> booleanCall= RetrofitBuilder.createService().addNewPersonne(params[0]);
             try {
-                Response<Boolean> booleanResponse= RetrofitBuilder.createService().addNewPersonne(params[0]).execute();
-                if(booleanResponse.code()==200){
-                    return booleanResponse.body();
-                }
+                Response<Boolean> booleanResponse=booleanCall.execute();
+                output= booleanResponse.body();
+
             } catch (IOException e) {
                 e.printStackTrace();
             }
-            return false;
-
+            return output;
         }
 
         @Override
         protected void onPostExecute(Boolean aBoolean) {
             super.onPostExecute(aBoolean);
-            Log.e("Reponse : ", aBoolean.toString());
+            Log.e("returned",aBoolean.toString());
+           if(aBoolean==true){
+               Toast.makeText(InscriptionActivity.this,"Inscription Reussi:!",Toast.LENGTH_SHORT).show();
+               finish();
+           }
         }
     }
 
